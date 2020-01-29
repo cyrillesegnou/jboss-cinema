@@ -6,23 +6,19 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import fr.gtm.cinema.dao.FilmDAO;
-
-
-
-import fr.gtm.cinema.dao.FilmDAO;
+import fr.gtm.cinema.dto.FilmDTO;
 import fr.gtm.cinema.entities.Film;
 
 @Singleton
-public class FilmService {
+public class CinemaService {
 	@EJB private FilmDAO filmDao ;
 	
-	public List<Film> getAllFilm(){
+	public List<FilmDTO> getAllFilmDto(){
 		List<Film> films = filmDao.findAllFilms();
-		List<Film> allfilms = new ArrayList<Film>();
+		List<FilmDTO> allfilms = new ArrayList<FilmDTO>();
 		for(Film f: films) {
-			allfilms.add(new Film(f));
+			allfilms.add(new FilmDTO(f));
 		}
-		return allfilms;		
-	
-
+		return allfilms;	
+	}
 }

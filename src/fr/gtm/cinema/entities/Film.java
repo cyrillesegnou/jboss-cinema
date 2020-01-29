@@ -16,7 +16,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "films")
 @SecondaryTable(name="resume", pkJoinColumns = @PrimaryKeyJoinColumn(name = "fk_film"))
-	@NamedQuery (name = "Film.getAll", query = "SELECT f FROM Film f")
+	@NamedQuery (name = "Film.getAll", 
+				query = "SELECT f FROM Film f")
+	@NamedQuery(name = "Film.findByYear",
+				query = "SELECT f FROM Film WHERE YEAR(f.datesortie) = :year)")
 
 
 public class Film {
@@ -28,9 +31,16 @@ public class Film {
 	@Column(name="date_sortie")
 	private Date dateSortie ;
 	private int duree;
+	@Column(name = "prixht")
 	private double prix;
 	private String vignette ;
-
+	@Column(table = "resumes", name = "resume")
+	private String resume ;
+	
+	public Film () {
+		
+	}
+	
 	public Film(String titre, Date dateSortie, int duree, double prix, String vignette) {
 		super();
 		this.titre = titre;
@@ -38,6 +48,7 @@ public class Film {
 		this.duree = duree;
 		this.prix = prix;
 		this.vignette = vignette;
+		
 	}
 
 	public long getId() {

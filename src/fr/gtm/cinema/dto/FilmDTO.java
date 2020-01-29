@@ -18,7 +18,7 @@ public class FilmDTO {
 		
 		this.id = film.getId();
 		this.titre = film.getTitre();
-		this.dateSortie = film.get.DateSortie();
+		this.dateSortie = film.getDateSortie();
 		this.duree = film.getDuree();
 		this.prix = film.getPrix();
 		this.vignette = film.getVignette();
